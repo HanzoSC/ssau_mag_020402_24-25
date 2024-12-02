@@ -1,0 +1,47 @@
+<div class="filters">
+  <label>
+    Исполнитель:
+    <input type="text" [(ngModel)]="filter.assignee" (input)="applyFilter()" />
+  </label>
+
+  <label>
+    Приоритет:
+    <select [(ngModel)]="filter.priority" (change)="applyFilter()">
+      <option value="">Все</option>
+      <option value="critical">Critical</option>
+      <option value="high">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+    </select>
+  </label>
+
+  <label>
+    Тип:
+    <select [(ngModel)]="filter.type" (change)="applyFilter()">
+      <option value="">Все</option>
+      <option value="task">Task</option>
+      <option value="bug">Bug</option>
+    </select>
+  </label>
+</div>
+
+<!-- Кнопка для добавления новой задачи -->
+<div class="add-task-btn">
+  <button (click)="navigateToCreateTask()">Добавить задачу</button>
+</div>
+
+<!-- Список задач -->
+<ul>
+  <li *ngFor="let task of filteredTasks">
+    <h3>{{ task.title }} ({{ task.type }})</h3>
+    <p><strong>Приоритет:</strong> {{ task.priority }}</p>
+    <p><strong>Исполнитель:</strong> {{ task.assignee }}</p>
+    <p><strong>Обновлено:</strong> {{ task.updatedAt }}</p>
+
+    <!-- Удаление задачи -->
+    <button (click)="deleteTask(task.id)" class="btn btn-danger">Удалить</button>
+
+    <!-- Ссылка на редактирование задачи -->
+    <button [routerLink]="['/tasks/edit', task.id]" class="btn btn-primary">Редактировать</button>
+  </li>
+</ul>

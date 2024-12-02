@@ -1,0 +1,23 @@
+<div class="employee-list">
+  <h2>Список сотрудников</h2>
+  <button (click)="addEmployee()">Добавить сотрудника</button>
+  <table>
+    <thead>
+      <tr>
+        <th>Имя</th>
+        <th>Должность</th>
+        <th>Действия</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees">
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.role }}</td>
+        <td>
+          <button (click)="editEmployee(employee.id)">Редактировать</button>
+          <button (click)="deleteEmployee(employee.id)">Удалить</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
